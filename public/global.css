@@ -1,0 +1,50 @@
+html,
+body {
+	position: relative;
+	width: 100%;
+    height: 100%;
+    padding: 0px;
+}
+    
+body {
+	/* color: #525252; */
+	margin: 0;
+	padding: 0px;
+	box-sizing: border-box;
+	/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; */
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+}
+
+:root{
+    --theme-primary: #753374;
+    
+    --theme-secondary: #335375;
+    
+    --theme-success: #337475;
+    
+    --theme-warning: red;
+
+    --theme-white: white;
+    --theme-dark-gray: rgb(70, 70, 70);
+    --theme-light-gray: lightgray;
+    --theme-black: black;
+    
+    --theme-background: rgb(247, 247, 247);
+    --theme-surface: white;
+    
+    --theme-brand-font: "Arial", Arial, sans-serif;
+    --theme-content-font: "Arial", Arial, sans-serif;
+    
+    --theme-title-1:  8rem;
+    --theme-title-2:  4rem;
+    --theme-title-3:  2rem;
+    --theme-title-4:  1.5rem;
+    --theme-paragraph: 1rem;
+    --theme-small: 0.8rem;
+
+    --theme-desktop: 1200px;
+    --theme-tablet: 834px;
+    --theme-mobile: 414px;
+
+}
