@@ -7,8 +7,9 @@ const routes = {
   // '/' : modules.PublicModule.Landing, // prod
   '/' : pages.Landing,
   '/login' : pages.Login,
-  '/user' : pages.User,
-  '/app' : pages.App
+  {{#each schema}}
+  '/{{id}}' : pages.{{displayName}}{{#if @last}}{{else}},{{/if}}
+  {{/each}}
   
   // // Guarded routes
   // "/home": wrap({

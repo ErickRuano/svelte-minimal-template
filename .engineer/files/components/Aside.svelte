@@ -5,14 +5,12 @@ import { location, push } from 'svelte-spa-router'
 
 
 export let links = [
+    {{#each schema}}
     {
-        url : "/user",
-        display : "User"
-    },
-    {
-        url : "/app",
-        display : "App"
-    }
+        url : "/{{id}}",
+        display : "{{displayName}}"
+    }{{#if @last}}{{else}},{{/if}}
+    {{/each}}
 ]
 
 export let style = "";

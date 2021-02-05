@@ -52,7 +52,7 @@
 @media (min-width:801px) {
   .layout{
     grid-template-columns: 8em 1fr;
-    grid-template-rows: 4em 8em 1fr;
+    grid-template-rows: 4em 6em 1fr;
     grid-template-areas: "nav nav" "aside header" "aside main";
   }
 
@@ -62,14 +62,14 @@
     width: auto;
     display: flex;
     box-sizing:border-box;
+    background:var(--theme-white);
     border-right: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   
   header {
     grid-area: header;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    height: 7em;
+    height: 100%;
     border-radius: 0 0em 0em 0em;
     padding:2em;
     box-sizing: border-box;
@@ -77,7 +77,7 @@
   }
 
   main {
-    padding:2em;
+    padding:0em 2em;
     box-sizing: border-box;
   }
 
@@ -110,6 +110,7 @@
 
     .layout{
       grid-template-columns: 8em 1fr;
+      grid-template-rows: 4em 6em 1fr;
     }
 
     aside {
@@ -119,7 +120,7 @@
       padding:2em;
     }
     main {
-      padding:2em;
+      padding:0em 2em;
     }
   
 

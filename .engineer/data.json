@@ -1,0 +1,18 @@
+{
+    "model" : [
+        {
+            "id" : "blog",
+            "code" : true
+        },
+        {
+            "id" : "post",
+            "code" : true
+        },
+        {
+            "id" : "author",
+            "isUser" : true,
+            "other" : true
+        }
+    ]
+   }
+   

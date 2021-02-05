@@ -4,6 +4,7 @@
 	import { Module, Webnav, Aside } from "../../components/";
 	import { getContext, onMount } from "svelte";
 
+	import DatatablePartial from './datatable.partial.svelte'
 
 	// Exports
 
@@ -45,11 +46,11 @@ section[slot="webnav"]{
 	</section>
 	
 	<section slot="header">
-		Header
+		{{displayName}}
 	</section>
 
 	<section slot="main" >
-		Content
+		<svelte:component this={DatatablePartial}></svelte:component>
   	</section>
 
 </Module>
