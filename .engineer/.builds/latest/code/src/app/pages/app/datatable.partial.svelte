@@ -1,25 +1,58 @@
 <script>
-    import { Datatable, rows } from 'svelte-simple-datatables'
+    import { Table } from './../../components'
 
-    export let data = []
+        export let data = []
+    
 
     const settings = {
-        sortable: true,
-        pagination: true,
-        rowPerPage: 50,
-        columnFilter: true,
+        valueNames : [
+            'text'
+            'isPublished'
+            'detail',
+        ]
     }
+    
 
 
 </script>
 
-<Datatable settings={settings} data={data}>
+<Table let:output-rows={rows} let:output-headers={headers} data={data} options={settings}>
+<input class="search" placeholder="Search" />
+<table >
     <thead>
-    </thead>
-    <tbody>
-    {#each $rows as row}
         <tr>
+            <th class="sort" data-sort="text">Text</th>
+            <th class="sort" data-sort="isPublished">IsPublished</th>
+            <th class="sort" data-sort="detail">Detail</th>
+        </tr>
+    </thead>
+    <tbody class="list">
+    {#if !rows.length}
+    <tr>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    {/if}
+    {#each rows as row, i}
+        <tr>
+            <td class="text">
+            { row.text }
+            <td class="isPublished">
+            { row.isPublished }
+            <td class="detail">
+            { row.detail }
         </tr>
     {/each}
     </tbody>
-</Datatable>
+</table>
+</Table>
+
+<style>
+.search{
+    width:100%;
+    padding:1em;
+    height:2em;
+    box-sizing: border-box;
+}
+</style>

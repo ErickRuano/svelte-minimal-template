@@ -1,76 +1,54 @@
 <script>
+    import { Table } from './../../components'
 
-    export let data = []
+        export let data = []
+    
 
     const settings = {
-        sortable: true,
-        pagination: true,
-        rowPerPage: 5,
-        columnFilter: true,
+        valueNames : [
+            'email',
+            'password'
+        ]
     }
-
-    import List from 'list.js'
-
     
 
 
 </script>
 
-
-<table id="datatable">
+<Table let:output-rows={rows} let:output-headers={headers} data={data} options={settings}>
+<input class="search" placeholder="Search" />
+<table >
     <thead>
-        <th data-key="email">Email</th>
-        <th data-key="password">Password</th>
-    </thead>
-    <tbody>
-    {#each data as row, i}
         <tr>
-            <td>
+            <th class="sort" data-sort="email">Email</th>
+            <th class="sort" data-sort="password">Password</th>
+        </tr>
+    </thead>
+    <tbody class="list">
+    {#if !rows.length}
+    <tr>
+        {#each settings.valueNames as header, i}
+        <td>-</td>
+        {/each}
+    </tr>
+    {/if}
+    {#each rows as row, i}
+        <tr>
+            <td class="email">
             { row.email }
-            </td>
-            <td>
+            <td class="password">
             { row.password }
-            </td>
         </tr>
     {/each}
     </tbody>
 </table>
+</Table>
 
 <style>
-#datatable {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+.search{
     width:100%;
-}
-
-#datatable thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-}
-
-#datatable th,
-#datatable td {
-    padding: 12px 15px;
-    text-align: left;
-}
-#datatable tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-#datatable tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-#datatable tbody tr:last-of-type {
-    border-bottom: 2px solid var(--theme-secondary);
-}
-#datatable tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
+    padding:1em;
+    height:2em;
+    box-sizing: border-box;
 }
 </style>
