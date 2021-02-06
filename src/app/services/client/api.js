@@ -1,14 +1,15 @@
 import axios from 'axios'
 
 const client = axios.create({
-    baseURL: 'http://localhost:3000/',
+    // baseURL: 'http://localhost:3002/',
     // timeout: 1000
 })
 
 const apiRequest = async (method, url, request)=>{
+    console.log(`http://localhost:3001/${url}`)
     return await client({
         method,
-        url,
+        url : `http://localhost:3001/${url}`,
         data : request
     })
 }

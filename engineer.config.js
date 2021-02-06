@@ -1,10 +1,9 @@
-const explodeSchemaIdPlugin = require("./.engineer/plugins/explodeSchemaId.plugin");
 const explodeSchemaId = require("./.engineer/plugins/explodeSchemaId.plugin");
 
 const main = async ()=>{
 
   let config = {
-    "data" : require('./instantcode.schema.json'),
+    "data" : require('./../instantcode.schema.json'),
     "fileTemplates" : [
       {
         "src" : "./.engineer/files/page/page.svelte",
@@ -15,6 +14,15 @@ const main = async ()=>{
         "src" : "./.engineer/files/page/datatable.partial.svelte",
         "dest" : "./src/app/pages/[id]/datatable.partial.svelte",
         "key" : "schema"
+      },
+      {
+        "src" : "./.engineer/files/entity.service.js",
+        "dest" : "./src/app/services/client/[id].service.js",
+        "key" : "schema"
+      },
+      {
+        "src" : "./.engineer/files/client.index.js",
+        "dest" : "./src/app/services/client/index.js"
       },
       {
         "src" : "./.engineer/files/pages.index.js",
@@ -34,6 +42,7 @@ const main = async ()=>{
   config = await explodeSchemaId(config)
   console.log(config.data.schema)
   return config
+
 
 }
 

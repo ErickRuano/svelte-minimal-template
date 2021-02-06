@@ -1,10 +1,13 @@
 <script>
-import { Auth } from '../../components'
-
-import { getContext } from "svelte";
-import { push } from "svelte-spa-router";
+import { getContext, onMount } from "svelte";
+import { Auth, Input } from '../../components'
+import { push, querystring } from "svelte-spa-router";
 
 const { client, session } = getContext('services');
+
+import LoginForm from './loginForm.partial.svelte'
+
+// Model
     
     let user = {
         username : "",
@@ -13,12 +16,12 @@ const { client, session } = getContext('services');
 
     let userSession;
 
-
+// Methods
 const login = async ()=>{
     try{
         userSession = await client.auth.signIn(user);
         session.setSession(userSession);
-        push('/home')
+        push('/app')
     }catch(err){
         alert('login failed')
     }
@@ -26,17 +29,5 @@ const login = async ()=>{
 </script>
 
 <Auth>
-
-    <section slot="header">
-        Header
-	</section>
-
-	<section slot="nav">
-        Nav
-	</section>
-
-	<section slot="main" >
-	    Hello
-  	</section>
-      
+    <LoginForm {user}></LoginForm>
 </Auth>

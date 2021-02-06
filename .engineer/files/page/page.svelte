@@ -14,9 +14,10 @@
 	let records = []
 	
 	// Fetch 
-	const fetchRecords = () => { 
-	
-	}
+	onMount(async ()=>{
+		records = await client.{{id}}.findMany()
+		records = [...records]
+	})
 
 </script>
 
@@ -50,7 +51,7 @@ section[slot="webnav"]{
 	</section>
 
 	<section slot="main" >
-		<svelte:component this={DatatablePartial}></svelte:component>
+		<svelte:component this={DatatablePartial} bind:data={records}></svelte:component>
   	</section>
 
 </Module>

@@ -5,10 +5,13 @@ import { wrap } from 'svelte-spa-router/wrap'
 const routes = {
   // Unguarded routes
   // '/' : modules.PublicModule.Landing, // prod
-  '/' : pages.Landing,
+  '/' : pages.Login,
   '/login' : pages.Login,
   {{#each schema}}
-  '/{{id}}' : pages.{{displayName}}{{#if @last}}{{else}},{{/if}}
+  '/{{id}}' : wrap({ 
+    component : pages.{{displayName}},
+    conditions : [authGuard]
+  }){{#if @last}}{{else}},{{/if}}
   {{/each}}
   
   // // Guarded routes

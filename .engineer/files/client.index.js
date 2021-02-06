@@ -1,7 +1,8 @@
 import API from './api.js'
 import { confirmPassword, forgotPassword, signIn, self } from './auth.service.js'
-import user from './user.service.js'
-import app from './app.service.js'
+{{#each schema}}
+import {{id}} from './{{{id}}}.service.js'
+{{/each}}
 
 export default {
     instance : API.instance,
@@ -11,6 +12,7 @@ export default {
         signIn,
         self
     },
-    user,
-    app
+    {{#each schema}}
+    {{id}}{{#if @last}}{{else}},{{/if}}
+    {{/each}}
 }

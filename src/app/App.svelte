@@ -15,6 +15,7 @@
   // set services
   setContext("services", app.services)
 
+  
   // set helpers
   setContext("helpers", app.helpers)
 
@@ -23,6 +24,20 @@
   client.instance.defaults.baseURL = env.apiURL
   client.instance.interceptors.response.use(app.interceptors.parseResponse)
   client.instance.interceptors.request.use(app.interceptors.authorizeRequest)
+
+  const validateSession = async ()=>{
+    console.log('hey')
+
+    let session = app.services.session.getSession();
+    if(!session.user){
+      const userData = await client.auth.self()
+      console.log(userData)
+      app.services.session.setSession({ user : userData, id_token : session.id_token })
+    }
+    return true
+  }
+
+  validateSession()
   
   // Load router and routes
   import Router from "svelte-spa-router";

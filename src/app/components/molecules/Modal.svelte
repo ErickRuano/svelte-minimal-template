@@ -7,7 +7,7 @@
 	export let main = false;
 	export let div = true;
 	
-	export let backgroundColor = "rgba(0,0,0,0.1)";
+	export let backgroundColor = "rgba(0,0,0,0.4)";
 	export let foregroundColor = "#FFF";
 	export let index = 0;
 	export let style = "";
@@ -19,8 +19,8 @@
 	let modalContainer;
 	const modalContainerStyle = `
 		--index:${index};
-		--backgroundColor:${backgroundColor};
-		--foregroundColor:${foregroundColor};
+		--modalBackgroundColor:${backgroundColor};
+		--modalForegroundColor:${foregroundColor};
 		`
 	
 	const keyUpHandler = (event)=> {
@@ -68,7 +68,7 @@
 		left:0px;
 		right:0px;
 		z-index:var(--index);
-		background:var(--backgroundColor);
+		background:var(--modalBackgroundColor);
 		display:flex;
 		justify-content: center;
 		align-items: center;
@@ -79,7 +79,7 @@
 	.modal-content{
 		width:auto;
 		height:auto;
-		background:var(--foregroundColor);
+		background:var(--modalForegroundColor);
 		padding:2em;
 	}
 </style>

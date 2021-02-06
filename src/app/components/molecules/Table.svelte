@@ -8,7 +8,8 @@
 	
 	export let options = {
 		valueNames : [] // This should be obtained from data headers
-	}
+    }
+    console.log('options', options)
 
 	export let headerBackground = "var(--theme-secondary)";
 	export let headerColor = "#FFF";
