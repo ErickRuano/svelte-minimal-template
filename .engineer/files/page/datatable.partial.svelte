@@ -5,6 +5,7 @@
 
         export let data = []
 
+
         let new{{displayName}} = {
             {{#if createdByUser}}
             "userId" : session.getSession().user.id,

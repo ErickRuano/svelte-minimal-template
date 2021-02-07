@@ -9,9 +9,9 @@ export const forgotPassword = async (data, config)=>{
 }
 
 export const confirmPassword = async (data, config)=>{
-    return await API.put(`auth/reset`, data, config)
+    return await API.put(`auth/reset`,  config)
 }
 
-export const self = async (config)=>{
-    return await API.get(`auth/self`, config)
+export const self = async (data, config)=>{
+    return await API.get(`auth/self`, config, { authorization : data })
 }

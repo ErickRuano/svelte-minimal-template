@@ -7,6 +7,7 @@ const routes = {
   // '/' : modules.PublicModule.Landing, // prod
   '/' : pages.Login,
   '/login' : pages.Login,
+  '/logout' : pages.Logout,
   '/user' : wrap({ 
     component : pages.User,
     conditions : [authGuard]

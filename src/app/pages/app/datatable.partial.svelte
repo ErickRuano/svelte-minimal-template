@@ -5,6 +5,7 @@
 
         export let data = []
 
+
         let newApp = {
             "userId" : session.getSession().user.id,
             "text" : "",

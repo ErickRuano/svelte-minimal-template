@@ -7,6 +7,7 @@ const routes = {
   // '/' : modules.PublicModule.Landing, // prod
   '/' : pages.Login,
   '/login' : pages.Login,
+  '/logout' : pages.Logout,
   {{#each schema}}
   '/{{id}}' : wrap({ 
     component : pages.{{displayName}},

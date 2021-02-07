@@ -16,16 +16,7 @@ import LoginForm from './loginForm.partial.svelte'
 
     let userSession;
 
-// Methods
-const login = async ()=>{
-    try{
-        userSession = await client.auth.signIn(user);
-        session.setSession(userSession);
-        push('/app')
-    }catch(err){
-        alert('login failed')
-    }
-}
+
 </script>
 
 <Auth>

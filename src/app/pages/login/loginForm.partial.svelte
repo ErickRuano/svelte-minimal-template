@@ -3,7 +3,7 @@
     import qs from 'qs';
     import { push, querystring } from "svelte-spa-router";
     import { Input, Button } from './../../components'
-    const { session } = getContext('services');
+    const { session, client } = getContext('services');
     
     export let user;
 
@@ -13,9 +13,11 @@
         return false;
     }
 
-    onMount(()=>{
+    onMount(async ()=>{
         if(qs.parse($querystring).token){
-            session.setSession({ id_token : qs.parse($querystring).token });
+            // session.setSession({ id_token : qs.parse($querystring).token });
+            const sessionUser = await client.auth.self(qs.parse($querystring).token)
+            session.setSession({ id_token : qs.parse($querystring).token, user : sessionUser.oAuthData})
             push('/app')
         }
     })

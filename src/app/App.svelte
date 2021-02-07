@@ -26,7 +26,6 @@
   client.instance.interceptors.request.use(app.interceptors.authorizeRequest)
 
   const validateSession = async ()=>{
-    console.log('hey')
 
     let session = app.services.session.getSession();
     if(!session.user){
