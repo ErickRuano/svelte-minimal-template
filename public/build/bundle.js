@@ -3394,8 +3394,8 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
-    	child_ctx[6] = i;
+    	child_ctx[5] = list[i];
+    	child_ctx[7] = i;
     	return child_ctx;
     }
 
@@ -3403,33 +3403,30 @@ var app = (function () {
     function create_each_block(ctx) {
     	let li;
     	let p;
-    	let t0_value = /*link*/ ctx[4].display + "";
-    	let t0;
-    	let t1;
+    	let t_value = /*link*/ ctx[5].display + "";
+    	let t;
     	let mounted;
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[3](/*link*/ ctx[4]);
+    		return /*click_handler*/ ctx[3](/*link*/ ctx[5]);
     	}
 
     	const block = {
     		c: function create() {
     			li = element("li");
     			p = element("p");
-    			t0 = text(t0_value);
-    			t1 = space();
+    			t = text(t_value);
     			attr_dev(p, "class", "svelte-6x7g3a");
     			add_location(p, file$6, 94, 16, 2072);
     			attr_dev(li, "class", "svelte-6x7g3a");
-    			toggle_class(li, "selected", /*$location*/ ctx[2] === /*link*/ ctx[4].url);
+    			toggle_class(li, "selected", /*$location*/ ctx[2] === /*link*/ ctx[5].url);
     			add_location(li, file$6, 93, 12, 1970);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
     			append_dev(li, p);
-    			append_dev(p, t0);
-    			append_dev(li, t1);
+    			append_dev(p, t);
 
     			if (!mounted) {
     				dispose = listen_dev(li, "click", click_handler, false, false, false);
@@ -3438,10 +3435,10 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*links*/ 1 && t0_value !== (t0_value = /*link*/ ctx[4].display + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*links*/ 1 && t_value !== (t_value = /*link*/ ctx[5].display + "")) set_data_dev(t, t_value);
 
     			if (dirty & /*$location, links*/ 5) {
-    				toggle_class(li, "selected", /*$location*/ ctx[2] === /*link*/ ctx[4].url);
+    				toggle_class(li, "selected", /*$location*/ ctx[2] === /*link*/ ctx[5].url);
     			}
     		},
     		d: function destroy(detaching) {
@@ -3467,8 +3464,13 @@ var app = (function () {
     	let section;
     	let img;
     	let img_src_value;
-    	let t;
+    	let t0;
     	let ul;
+    	let t1;
+    	let li;
+    	let p;
+    	let mounted;
+    	let dispose;
     	let each_value = /*links*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -3482,13 +3484,17 @@ var app = (function () {
     			div = element("div");
     			section = element("section");
     			img = element("img");
-    			t = space();
+    			t0 = space();
     			ul = element("ul");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
+    			t1 = space();
+    			li = element("li");
+    			p = element("p");
+    			p.textContent = "Logout";
     			attr_dev(img, "width", "75%");
     			attr_dev(img, "margin", "auto");
     			attr_dev(img, "height", "auto");
@@ -3497,6 +3503,10 @@ var app = (function () {
     			add_location(img, file$6, 88, 12, 1761);
     			attr_dev(section, "class", "avatar-holder svelte-6x7g3a");
     			add_location(section, file$6, 87, 8, 1716);
+    			attr_dev(p, "class", "svelte-6x7g3a");
+    			add_location(p, file$6, 98, 16, 2206);
+    			attr_dev(li, "class", "svelte-6x7g3a");
+    			add_location(li, file$6, 97, 12, 2147);
     			attr_dev(ul, "class", "svelte-6x7g3a");
     			add_location(ul, file$6, 91, 8, 1914);
     			attr_dev(div, "class", "aside-container svelte-6x7g3a");
@@ -3510,11 +3520,20 @@ var app = (function () {
     			insert_dev(target, div, anchor);
     			append_dev(div, section);
     			append_dev(section, img);
-    			append_dev(div, t);
+    			append_dev(div, t0);
     			append_dev(div, ul);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(ul, null);
+    			}
+
+    			append_dev(ul, t1);
+    			append_dev(ul, li);
+    			append_dev(li, p);
+
+    			if (!mounted) {
+    				dispose = listen_dev(li, "click", /*click_handler_1*/ ctx[4], false, false, false);
+    				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
@@ -3531,7 +3550,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(ul, null);
+    						each_blocks[i].m(ul, t1);
     					}
     				}
 
@@ -3551,6 +3570,8 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     			destroy_each(each_blocks, detaching);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -3583,6 +3604,10 @@ var app = (function () {
     		push(`#${link.url}`);
     	};
 
+    	const click_handler_1 = () => {
+    		push(`#/logout`);
+    	};
+
     	$$self.$$set = $$props => {
     		if ("links" in $$props) $$invalidate(0, links = $$props.links);
     		if ("style" in $$props) $$invalidate(1, style = $$props.style);
@@ -3606,7 +3631,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [links, style, $location, click_handler];
+    	return [links, style, $location, click_handler, click_handler_1];
     }
 
     class Aside extends SvelteComponentDev {
@@ -7229,7 +7254,7 @@ var app = (function () {
     			if (img.src !== (img_src_value = "img/google.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "google");
     			attr_dev(img, "class", "svelte-1aerpdi");
-    			add_location(img, file$a, 34, 206, 1477);
+    			add_location(img, file$a, 34, 206, 1467);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -7261,7 +7286,7 @@ var app = (function () {
     			if (img.src !== (img_src_value = "img/github.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "github");
     			attr_dev(img, "class", "svelte-1aerpdi");
-    			add_location(img, file$a, 35, 190, 1718);
+    			add_location(img, file$a, 35, 190, 1708);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -7336,13 +7361,13 @@ var app = (function () {
     			t4 = space();
     			create_component(button1.$$.fragment);
     			attr_dev(h1, "class", "svelte-1aerpdi");
-    			add_location(h1, file$a, 28, 4, 879);
+    			add_location(h1, file$a, 28, 4, 869);
     			attr_dev(p, "class", "svelte-1aerpdi");
-    			add_location(p, file$a, 29, 4, 905);
+    			add_location(p, file$a, 29, 4, 895);
     			attr_dev(div, "class", "socialLogin svelte-1aerpdi");
-    			add_location(div, file$a, 33, 4, 1244);
+    			add_location(div, file$a, 33, 4, 1234);
     			attr_dev(form, "class", "loginForm svelte-1aerpdi");
-    			add_location(form, file$a, 27, 0, 849);
+    			add_location(form, file$a, 27, 0, 839);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7425,7 +7450,7 @@ var app = (function () {
 
     			session.setSession({
     				id_token: lib.parse($querystring).token,
-    				user: sessionUser.oAuthData
+    				user: sessionUser
     			});
 
     			push("/app");

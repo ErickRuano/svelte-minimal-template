@@ -17,7 +17,7 @@
         if(qs.parse($querystring).token){
             // session.setSession({ id_token : qs.parse($querystring).token });
             const sessionUser = await client.auth.self(qs.parse($querystring).token)
-            session.setSession({ id_token : qs.parse($querystring).token, user : sessionUser.oAuthData})
+            session.setSession({ id_token : qs.parse($querystring).token, user : sessionUser})
             push('/app')
         }
     })
